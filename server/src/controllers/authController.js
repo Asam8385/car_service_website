@@ -31,7 +31,7 @@ exports.loginUser = async (req, res) => {
     try {
         let user;
         if (role === 'user') {
-            user = await User.findOne({ username });
+            user = await User.findOne( { raw: true, where:  {username:username} });
         } else if (role === 'service_center') {
             user = await ServiceSender.findOne({ raw: true, where:  {name:username} });
             console.log(user)
