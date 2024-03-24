@@ -4,7 +4,7 @@ const authMiddleware = require('../middleware/authMiddleware');
 const formController = require('../controllers/formController');
 
 router.post('/',authMiddleware, formController.createform);
-router.get('/',authMiddleware, formController.getform);
+router.get('/', formController.getform);
 router.delete('/:id',authMiddleware, formController.finishform);
 
 module.exports = router;

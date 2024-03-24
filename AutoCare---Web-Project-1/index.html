@@ -23,7 +23,6 @@
     <link href="lib/animate/animate.min.css" rel="stylesheet">
     <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
     <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
-
     <!-- Customized Bootstrap Stylesheet -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
@@ -539,19 +538,7 @@
     </div>
     <!-- Team End -->
 
-<div class="container-xxl py-5">
-        <div class="container">
-            <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                <h6 class="text-primary text-uppercase"></h6>
-                <h1 class="mb-5">Sri Lanka's Leading Service Centers</h1>
-            </div>
-            <div id="teamContainer" class="row g-4">
-                
-    
-                 
-                </div>
-            </div>
- </div>
+
 
 
 
@@ -564,24 +551,10 @@
                 <h6 class="text-primary text-uppercase"></h6>
                 <h1 class="mb-5">Clients Feedback!</h1>
             </div>
-            <div class="owl-carousel testimonial-carousel position-relative">
-                <div class="testimonial-item text-center">
-                    <img class="bg-light rounded-circle p-2 mx-auto mb-3" src="img/testimonial-2.jpg" style="width: 80px; height: 80px;">
-                    <h5 class="mb-0">Sunil Perera</h5>
-                    <p>12:01:2024</p>
-                    <div class="testimonial-text bg-light text-center p-4">
-                    <p class="mb-0">Booking a vehicle service through your website was incredibly convenient and hassle-free. From selecting the desired service to scheduling the appointment, the entire process was seamless. </p>
-                    </div>
-                </div>
-                <div class="testimonial-item text-center">
-                    <img class="bg-light rounded-circle p-2 mx-auto mb-3" src="img/testimonial-2.jpg" style="width: 80px; height: 80px;">
-                    <h5 class="mb-0">Mohamed Ijaz</h5>
-                    <p>20:01:2023</p>
-                    <div class="testimonial-text bg-light text-center p-4">
-                    <p class="mb-0">The booking confirmation email I received promptly after completing the process was reassuring, and it contained all the necessary details regarding my appointment.</p>
-                    </div>
-                </div>
-                <div class="testimonial-item text-center">
+            <div id="feedback" class="">
+                
+              
+                <!-- <div class="testimonial-item text-center">
                     <img class="bg-light rounded-circle p-2 mx-auto mb-3" src="img/testimonial-2.jpg" style="width: 80px; height: 80px;">
                     <h5 class="mb-0">Ananda Peiris</h5>
                     <p>Profession</p>
@@ -596,7 +569,8 @@
                     <div class="testimonial-text bg-light text-center p-4">
                     <p class="mb-0">I recently took advantage of Drive Smart's snow foam special offer, and I must say, I am thrilled with the results! The snow foam wash made my car sparkling clean. </p>
                     </div>
-                </div>
+                </div> -->
+
             </div>
         </div>
     </div>
@@ -678,7 +652,7 @@
     <script src="lib/easing/easing.min.js"></script>
     <script src="lib/waypoints/waypoints.min.js"></script>
     <script src="lib/counterup/counterup.min.js"></script>
-    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+   <script src="lib/owlcarousel/owl.carousel.min.js"></script>
     <script src="lib/tempusdominus/js/moment.min.js"></script>
     <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
     <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
@@ -764,7 +738,83 @@ fetchDataAndPopulateTable();
 
 
 
+
+function fetchDataAndPopulateTable2() {
+	console.log("hai")
+	fetch('http://localhost:5000/form', {
+    method: 'GET',
+    headers: {
+      // Assuming 'token' holds your authentication token
+    }
+})
+.then(response => {
+    if (!response.ok) {
+        throw new Error('Network response was not ok');
+		Swal.fire({
+                    title: "Server Error",
+                    text: "Network response was not ok",
+                    icon: "error"
+                  });
+    }
+	
+    return response.json();
+})
+.then(data => {
+	console.log(data)
+    populateTable(data);
+})
+.catch(error => {
+    console.error('Error fetching data:', error);
+	Swal.fire({
+                    title: "Server Error",
+                    text: "Network response was not ok",
+                    icon: "error"
+                  });
+});
+
+const carouselContainer = document.getElementById("feedback");
+
+function populateTable(data) {
+    carouselContainer.className = "owl-carousel testimonial-carousel position-relative"
+		data.forEach(item => {
+    const html = `
+      <div class="testimonial-item text-center">
+        <img class="bg-light rounded-circle p-2 mx-auto mb-3" src="img/testimonial-2.jpg" style="width: 80px; height: 80px;">
+        <h5 class="mb-0">${item.first_name + " " + item.last_name}</h5>
+        <p>"user"</p>
+        <div class="testimonial-text bg-light text-center p-4">
+          <p class="mb-0">${item.message}</p>
+        </div>
+      </div>
+    `;
+
+   
+    carouselContainer.innerHTML += html;
+});
+
+
+$(".testimonial-carousel").owlCarousel({
+    loop: true,
+    margin: 30,
+    nav: true,
+    dots: true,
+    
+  });
+
+
+}
+}
+
+
+
+fetchDataAndPopulateTable2();
+
+
+
+
     </script>
+
+
 </body>
 
 </html>
