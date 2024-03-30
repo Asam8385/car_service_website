@@ -8,10 +8,6 @@
     <link href="http://fonts.googleapis.com/css2?family=Roboto" rel="stylesheet">
     <script src="sweetalert2.all.min.js"></script>
     <style>
-        .form-container {
-            max-height: 500px; /* Adjust this value as needed */
-            overflow-y: auto;
-        }
     </style>
 </head>
 <body>
@@ -24,7 +20,7 @@
             </div>
             <div class="form-container">
                 <form id="signin" class="input-group">
-                    <input type="text" id="username" class="input-field" placeholder="User Name" required>
+                    <input type="text" id="username" class="input-field" placeholder="Email" required>
                     <input type="password" id="password" class="input-field" placeholder="Password" required>
                     <select id="Role" class="input-field" name="Role" required>
                         
@@ -111,8 +107,7 @@
         .then(data => {
             console.log("Signup successful:", data);
             Swal.fire({  
-                text: `${data}`,
-                icon: "success"
+                text: `${data.message}`,
             });    
         })
         .catch(error => {
@@ -159,11 +154,9 @@
         })
         .then(response => response.json())
         .then(data => {
-            console.log("Signup successful:", data);
             Swal.fire({  
-                text: `${data}`,
-                icon: "success"
-            });    
+                text: `${data.message}`,
+            });  
         })
         .catch(error => {
             console.error("Error signing up:", error);

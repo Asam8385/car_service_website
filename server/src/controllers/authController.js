@@ -31,16 +31,16 @@ exports.loginUser = async (req, res) => {
     try {
         let user;
         if (role === 'user') {
-            user = await User.findOne( { raw: true, where:  {username:username} });
+            user = await User.findOne( { raw: true, where:  {email:username} });
         } else if (role === 'service_center') {
-            user = await ServiceSender.findOne({ raw: true, where:  {name:username} });
+            user = await ServiceSender.findOne({ raw: true, where:  {email:username} });
             console.log(user)
         } else {
             return res.status(400).json({ message: 'Invalid role' });
         }
 
         if (!user) {
-            return res.status(401).json({ message: 'Invalid username' });
+            return res.status(401).json({ message: 'Invalid email' });
         }
 
         const isValidPassword = await bcrypt.compare(password, user.password);
