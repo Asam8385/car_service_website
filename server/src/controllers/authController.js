@@ -24,6 +24,7 @@ exports.login = async (req, res) => {
     }
 };
 
+
 exports.loginUser = async (req, res) => {
     const { username, password, role } = req.body;
     console.log(username)
