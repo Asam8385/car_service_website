@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>
+        Sign In and Sign Up Form  
+    </title>
+    <link rel="stylesheet" href="style3.css">
+    <link href="http://fonts.googleapis.com/css2?family=Roboto" rel="stylesheet">
+    <script src="sweetalert2.all.min.js"></script>
+    <style>
+        .form-container {
+            max-height: 500px; /* Adjust this value as needed */
+            overflow-y: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <div class="form-box">
+            <div class="button-box">
+                <div id="btn"></div>
+                <button type="button" class="toggle-btn" onclick="signin()">Sign In</button>
+                <button type="button" class="toggle-btn" onclick="signup()">Sign Up</button>
+            </div>
+            <div class="form-container">
+                <form id="signin" class="input-group">
+                    <input type="text" id="username" class="input-field" placeholder="User Name" required>
+                    <input type="password" id="password" class="input-field" placeholder="Password" required>
+                    <select id="Role" class="input-field" name="Role" required>
+                        
+                        <option value="user">User</option>
+                        <option value="service_center">Vehicle Service Center</option>
+                    </select>
+                    <input type="checkbox" class="checkbox">
+                    <span>Remember Password</span>
+                    <button type="button" id="signInBtn" class="submit-btn">Sign In</button>
+                </form>
+            </div>
+                <form id="signup" class="input-group"  method="POST">
+                    <input type="text" class="input-field" placeholder="User Name" id="upusername"  required >
+                    <input type="email" class="input-field" placeholder="Email" id="upemail" required>
+                    <input type="password" class="input-field" placeholder="Password" id="uppassword" required >
+                    <input type="password" class="input-field" placeholder="Confirm Password" id="upconfirmPassword" required >
+                    <select id="upRole" class="input-field" name="Role" required>
+                        <option value="user">User</option>
+                        <option value="service_center">Vehicle Service Center</option>
+                    </select>
+                    <input type="checkbox" class="checkbox" required>
+                    <span>I agree to the <a href="#">Terms and Conditions</a>.</span>
+                    <button type="submit" id="signupBtn" class="submit-btn">Sign Up</button>
+                </form>
+                
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var x = document.getElementById("signin");
+        var y = document.getElementById("signup");
+        var z = document.getElementById("btn");
+
+        function signup() {
+            x.style.left = "-400px";
+            y.style.left = "50px";
+            z.style.left = "110px";
+        }
+
+        function signin() {
+            x.style.left = "50px";
+            y.style.left = "450px";
+            z.style.left = "0px";
+        }
+
+
+        document.getElementById("signupBtn").addEventListener("click", function(event) {
+    event.preventDefault();
+
+    const username = document.getElementById("upusername").value;
+    const email = document.getElementById("upemail").value;
+    const password = document.getElementById("uppassword").value;
+    const confirmPassword = document.getElementById("upconfirmPassword").value;
+    var role = document.getElementById('upRole').value;
+
+    if (role === 'user') {
+        if (!username || !email || !password || !confirmPassword) {
+            Swal.fire({
+                title: "Error",
+                text: "Some Fields Are Empty",
+                icon: "error"
+            });
+            return;
+        }
+
+        if (password !== confirmPassword) {
+            Swal.fire({
+                title: "Error",
+                text: "Password mismatched",
+                icon: "error"
+            });
+            return;
+        }
+
+        fetch("http://localhost:5000/user/signup", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ username, email, password, role })
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log("Signup successful:", data);
+            Swal.fire({  
+                text: `${data}`,
+                icon: "success"
+            });    
+        })
+        .catch(error => {
+            console.error("Error signing up:", error);
+            Swal.fire({
+                title: "Error",
+                text: "Error signing up",
+                icon: "error"
+            });
+        });
+
+    } else {
+        if (!username || !email || !password || !confirmPassword) {
+            Swal.fire({
+                title: "Error",
+                text: "Some Fields Are Empty",
+                icon: "error"
+            });
+            return;
+        }
+
+        if (password !== confirmPassword) {
+            Swal.fire({
+                title: "Error",
+                text: "Password mismatched",
+                icon: "error"
+            });
+            return;
+        }
+
+        const Data = {
+            name: username,
+            email: email,
+            password: password,
+            role: role
+        };
+
+        fetch("http://localhost:5000/ServiceSender/", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(Data)
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log("Signup successful:", data);
+            Swal.fire({  
+                text: `${data}`,
+                icon: "success"
+            });    
+        })
+        .catch(error => {
+            console.error("Error signing up:", error);
+            Swal.fire({
+                title: "Error",
+                text: "Error signing up",
+                icon: "error"
+            });
+        });
+    }
+});
+
+    document.getElementById('signInBtn').addEventListener('click', async function(event) {
+        event.preventDefault();
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+    const role = document.getElementById('Role').value;
+
+    const userData = {
+        username: username,
+        password: password,
+        role: role
+    };
+
+    try {
+        const response = await fetch('http://localhost:5000/auth/loginuser', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(userData)
+        });
+        if (!response.ok) {
+            throw new Error(response.message);
+        }
+
+        const data = await response.json();
+        console.log('Token:', data.token);
+        localStorage.setItem('token', data.token)
+        localStorage.setItem('role', data.role)
+        localStorage.setItem('user', data.role)
+
+
+        
+
+        const { token, role, user} = data;
+
+         if (role === 'service_center') {
+
+            localStorage.setItem('centerdetails', JSON.stringify(data.details))
+            localStorage.setItem('centerId', data.user)
+            console.log(data.details)
+
+        window.location.href = './Service_center/dashboard.html';
+
+    } else if (role === 'user') {
+
+        localStorage.setItem('userId', data.user)
+        localStorage.setItem('userdetails', JSON.stringify(data.details))
+        console.log(data.details)
+        localStorage.setItem('isLoggedIn', 'true');
+        window.location.href = './landing.html';
+
+        
+    }
+
+       
+    } catch (error) {
+        console.error('Error logging in:', error);
+        Swal.fire({
+                    title: "error",
+                    text: "Error logging in",
+                    icon: "question"
+                  });
+    }
+});
+
+    </script>
+</body>
+</html>

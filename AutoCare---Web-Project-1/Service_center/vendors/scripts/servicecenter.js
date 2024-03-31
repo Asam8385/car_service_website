@@ -24,8 +24,8 @@ form.addEventListener('submit', async function(event) {
         if(response.ok)
         {
             Swal.fire({
-                title: "Good job!",
-                text: "Your request was successful.",
+                title: "Done!",
+                text: "Profile is uploaded",
                 icon: "success"
             })
         }

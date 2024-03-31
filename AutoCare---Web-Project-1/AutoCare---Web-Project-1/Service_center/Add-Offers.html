@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!-- Basic Page Info -->
+		<meta charset="utf-8" />
+		<title>DeskApp - Bootstrap Admin Dashboard HTML Template</title>
+
+		<!-- Site favicon -->
+	
+
+		<!-- Mobile Specific Metas -->
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1, maximum-scale=1"
+		/>
+
+		<!-- Google Font -->
+		<link
+			href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+			rel="stylesheet"
+		/>
+		<!-- CSS -->
+		<link rel="stylesheet" type="text/css" href="vendors/styles/core.css" />
+		
+		<link
+			rel="stylesheet"
+			type="text/css"
+			href="vendors/styles/icon-font.min.css"
+		/>
+
+		/>
+		<link rel="stylesheet" type="text/css" href="src/styles/style.css" />
+		<link rel="stylesheet" type="text/css" href="vendors/styles/style.css" />
+		<script src="sweetalert2.all.min.js"></script>
+		
+
+		<!-- Global site tag (gtag.js) - Google Analytics -->
+	
+		<!-- End Google Tag Manager -->
+	</head>
+	<body style=" background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(./../img/signup.jpg) !important; background-size: cover !important;" >
+		
+		<div class="header" style="background-color: red !important;"> 
+			<div class="header-left">
+				<div class="menu-icon bi bi-list" ></div>
+				<div
+					class="search-toggle-icon bi bi-search"
+					data-toggle="header_search"
+					
+				></div>
+				<div class="header-search">
+					<form>
+						<div class="form-group mb-0">
+							<i class="dw dw-search2 search-icon"></i>
+							<input
+								type="text"
+								class="form-control search-input"
+								placeholder="Search Here"
+							/>
+							<div class="dropdown">
+								<a
+									class="dropdown-toggle no-arrow"
+									href="#"
+									role="button"
+									data-toggle="dropdown"
+								>
+									<i class="ion-arrow-down-c"></i>
+								</a>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+			<div class="header-right">
+				<div class="dashboard-setting user-notification" ">
+					<div class="dropdown">
+						<a
+							class="dropdown-toggle no-arrow"
+							href="javascript:;"
+							data-toggle="right-sidebar"
+						>
+							<i class="dw dw-settings2" ></i>
+						</a>
+					</div>
+				</div>
+				<div class="user-notification">
+					<div class="dropdown">
+						<a
+							class="dropdown-toggle no-arrow"
+							href="#"
+							role="button"
+							data-toggle="dropdown"
+						>
+							<i class="icon-copy dw dw-notification" style="color: white !important;"></i>
+							<span class="badge notification-active"></span>
+						</a>
+					</div>
+				</div>
+				<div class="user-info-dropdown">
+					<div class="dropdown">
+						<a
+							class="dropdown-toggle"
+							href="#"
+							role="button"
+							data-toggle="dropdown"
+						>
+							<span class="user-icon">
+								<img style="height: 55px !important; width: 55px !important;" alt="" />
+							</span>
+							<span class="user-name" >Admin</span>
+						</a>
+						<div
+							class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list"
+						>
+	
+							
+						<a class="dropdown-item" href="./../signup.html"
+								><i class="dw dw-logout"></i> Log Out</a
+							>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script>
+
+			var center = localStorage.getItem('centerdetails');
+			center = JSON.parse(center);
+			console.log(center)
+			const userNameElement = document.querySelector('.user-name');
+			if (userNameElement) {
+					userNameElement.textContent = center.name;
+				}
+
+			const userIconElement = document.querySelector('.user-icon img');
+			if (userIconElement) {
+				userIconElement.src = center.profilePicture;
+			}
+</script>
+
+		<div class="left-side-bar" style="background-color: black !important;">
+			<div class="brand-logo">
+				<a href="dashboard.html">
+					<img src="vendors/images/deskapp-logo.svg" alt="" class="dark-logo" />
+					<img
+						src="vendors/images/deskapp-logo-white.svg"
+						alt=""
+						class="light-logo"
+					/>
+				</a>
+				<div class="close-sidebar" data-toggle="left-sidebar-close">
+					<i class="ion-close-round"></i>
+				</div>
+			</div>
+
+
+			<div class="menu-block customscroll">
+				<div class="sidebar-menu">
+					<ul id="accordion-menu">
+						<li>
+							<a href="dashboard.html" class="dropdown-toggle no-arrow">
+								<span class="micon bi bi-receipt-cutoff"></span
+								><span class="mtext">Dashboard</span>
+							</a>
+						</li>
+						
+						
+					
+						<li>
+							<a href="Add-Offers.html" class="dropdown-toggle no-arrow">
+								<span class="micon bi bi-calendar4-week"></span
+								><span class="mtext">Add Offer</span>
+							</a>
+						</li>
+
+						<li>
+							<a href="deleteoffer.html" class="dropdown-toggle no-arrow">
+								<span class="micon bi bi-calendar4-week"></span
+								><span class="mtext">Delete Offer</span>
+							</a>
+						</li>
+
+						<li>
+							<a href="form-basic.html" class="dropdown-toggle no-arrow">
+								<span class="micon bi bi-receipt-cutoff"></span
+								><span class="mtext">Update profile</span>
+							</a>
+						</li>
+
+						<li>
+							<div class="dropdown-divider"></div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="mobile-menu-overlay"></div>
+			<div class="main-container   d-flex flex-column justify-content-center align-items-center">
+			   
+					<div class=" card col-lg-6">
+						<div class="h-100 d-flex flex-column justify-content-center align-items-center text-center p-4 wow zoomIn" style="background-color: black !important;" data-wow-delay="0.6s">
+							<h1 class="text-white mb-4">Add Special Offers</h1>
+							<form id="offerForm" method="POST">
+								<div class="row g-3">
+									<div class="col-12 col-sm-6 p-2">
+										<input type="text" id="title" name="title" class="form-control border-0" placeholder="Offer Title" style="height: 55px;" required>
+									</div>
+									<div class="col-12 col-sm-6 p-2">
+										<input type="number" id="discount_percentage" name="discount_percentage" min="0" max="100" required  class="form-control border-0" placeholder="Discount Percentage" style="height: 55px;">
+									</div>
+									<div class="col-12 col-sm-6 p-2">
+										<input type="file" id="offer_image" name="offer_image" accept="image/*" required  class="form-control border-0" placeholder="Upload the Offer Image" style="height: 55px;">
+									</div>
+									<div class="form-group p-3" style="height: 55px !important;">
+										<input class="form-control datetimepicker" placeholder="Choose Date and time" type="text" name="date_time" required>
+									</div>
+									<div class="col-12 p-2">
+										<input type="text" id="promo_code" name="promo_code" class="form-control border-0" placeholder="Promo Code" style="height: 55px;">
+									</div>
+									<div class="col-12 p-2">
+										<textarea name="description" id="description" class="form-control border-0" placeholder="Offer Description"></textarea>
+									</div>
+									<div class="col-12 p-2">
+										<button class="btn btn-secondary w-100 py-3"  type="submit">Add Offer</button>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- welcome modal start -->
+		<!-- welcome modal end -->
+		<!-- js -->
+		<script src="vendors/scripts/core.js"></script>
+		<script src="vendors/scripts/script.min.js"></script>
+		<script src="vendors/scripts/process.js"></script>
+		<script src="vendors/scripts/layout-settings.js"></script>
+
+<script>
+    const form = document.getElementById('offerForm');
+
+    form.addEventListener('submit', async function(event) {
+        event.preventDefault(); // Prevent default form submission behavior
+
+        try {
+            const formData = new FormData(form);
+			const token = localStorage.getItem('token');
+			const userId = localStorage.getItem('centerId');
+       		 formData.append('centerId', userId);
+
+
+            for (const entry of formData.entries()) {
+                console.log(entry[0], entry[1]);
+            }
+
+            const response = await fetch(`http://localhost:5000/offer`, {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                },
+                body: formData
+            });
+
+			if(response.ok)
+			{
+				Swal.fire({
+        title: "Good job!",
+        text: "Your request was successful.",
+        icon: "success"
+    });
+			}
+
+            if (!response.ok) {
+                const errorMessage = await response.text();
+                Swal.fire({
+        title: "Oops...",
+        text: "Something went wrong.",
+        icon: "error"
+    });
+                throw new Error(`HTTP error! Status: ${errorMessage}`);
+            }
+
+            const responseData = await response.json();
+            console.log(responseData);
+        } catch (error) {
+            console.error(error);
+			Swal.fire({
+        title: "Oops...",
+        text: "Something went wrong.",
+        icon: "error"
+    });
+        }
+    });
+</script>
+
+
+		
+		<noscript
+			><iframe
+				src="https://www.googletagmanager.com/ns.html?id=GTM-NXZMQSS"
+				height="0"
+				width="0"
+				style="display: none; visibility: hidden"
+			></iframe
+		></noscript>
+		<!-- End Google Tag Manager (noscript) -->
+	</body>
+</html>

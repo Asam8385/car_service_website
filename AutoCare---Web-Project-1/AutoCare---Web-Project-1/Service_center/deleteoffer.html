@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!-- Basic Page Info -->
+		<meta charset="utf-8" />
+		<title>Service Center</title>
+
+		<!-- Site favicon -->
+		
+
+		<!-- Mobile Specific Metas -->
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1, maximum-scale=1"
+		/>
+
+		<!-- Google Font -->
+		<link
+			href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+			rel="stylesheet"
+		/>
+		<!-- CSS -->
+		<link rel="stylesheet" type="text/css" href="vendors/styles/core.css" />
+		<link
+			rel="stylesheet"
+			type="text/css"
+			href="vendors/styles/icon-font.min.css"
+		/>
+		<link
+			rel="stylesheet"
+			type="text/css"
+			href="src/plugins/datatables/css/dataTables.bootstrap4.min.css"
+		/>
+		<link
+			rel="stylesheet"
+			type="text/css"
+			href="src/plugins/datatables/css/responsive.bootstrap4.min.css"
+		/>
+		<link rel="stylesheet" type="text/css" href="vendors/styles/style.css" />
+
+		<!-- Global site tag (gtag.js) - Google Analytics -->
+		<script
+			async
+			src="https://www.googletagmanager.com/gtag/js?id=G-GBZ3SGGX85"
+		></script>
+		<script
+			async
+			src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2973766580778258"
+			crossorigin="anonymous"
+		></script>
+		<script src="sweetalert2.all.min.js"></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag() {
+				dataLayer.push(arguments);
+			}
+			gtag("js", new Date());
+
+			gtag("config", "G-GBZ3SGGX85");
+		</script>
+		<!-- Google Tag Manager -->
+		<script>
+			(function (w, d, s, l, i) {
+				w[l] = w[l] || [];
+				w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+				var f = d.getElementsByTagName(s)[0],
+					j = d.createElement(s),
+					dl = l != "dataLayer" ? "&l=" + l : "";
+				j.async = true;
+				j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+				f.parentNode.insertBefore(j, f);
+			})(window, document, "script", "dataLayer", "GTM-NXZMQSS");
+		</script>
+		<!-- End Google Tag Manager -->
+	</head>
+	<body style=" background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(./../img/signup.jpg) !important; background-size: cover !important;" >
+		<!-- <div class="pre-loader">
+			<div class="pre-loader-box">
+				<div class="loader-logo">
+					<img src="vendors/images/deskapp-logo.svg" alt="" />
+				</div>
+				<div class="loader-progress" id="progress_div">
+					<div class="bar" id="bar1"></div>
+				</div>
+				<div class="percent" id="percent1">0%</div>
+				<div class="loading-text">Loading...</div>
+			</div>
+		</div> -->
+
+		<div class="header" style="background-color: red !important;"> 
+			<div class="header-left">
+				<div class="menu-icon bi bi-list" ></div>
+				<div
+					class="search-toggle-icon bi bi-search"
+					data-toggle="header_search"
+					
+				></div>
+				<div class="header-search">
+					<form>
+						<div class="form-group mb-0">
+							<i class="dw dw-search2 search-icon"></i>
+							<input
+								type="text"
+								class="form-control search-input"
+								placeholder="Search Here"
+							/>
+							<div class="dropdown">
+								<a
+									class="dropdown-toggle no-arrow"
+									href="#"
+									role="button"
+									data-toggle="dropdown"
+								>
+									<i class="ion-arrow-down-c"></i>
+								</a>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+			<div class="header-right">
+				<div class="dashboard-setting user-notification" ">
+					<div class="dropdown">
+						<a
+							class="dropdown-toggle no-arrow"
+							href="javascript:;"
+							data-toggle="right-sidebar"
+						>
+							<i class="dw dw-settings2" ></i>
+						</a>
+					</div>
+				</div>
+				<div class="user-notification">
+					<div class="dropdown">
+						<a
+							class="dropdown-toggle no-arrow"
+							href="#"
+							role="button"
+							data-toggle="dropdown"
+						>
+							<i class="icon-copy dw dw-notification" style="color: white !important;"></i>
+							<span class="badge notification-active"></span>
+						</a>
+					</div>
+				</div>
+				<div class="user-info-dropdown">
+					<div class="dropdown">
+						<a
+							class="dropdown-toggle"
+							href="#"
+							role="button"
+							data-toggle="dropdown"
+						>
+							<span class="user-icon">
+								<img style="height: 55px !important; width: 55px !important;" alt="" />
+							</span>
+							<span class="user-name" >Admin</span>
+						</a>
+						<div
+							class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list"
+						>
+	
+							
+						<a class="dropdown-item" href="./../signup.html"
+								><i class="dw dw-logout"></i> Log Out</a
+							>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script>
+
+			var center = localStorage.getItem('centerdetails');
+			center = JSON.parse(center);
+			console.log(center)
+			const userNameElement = document.querySelector('.user-name');
+			if (userNameElement) {
+					userNameElement.textContent = center.name;
+				}
+
+			const userIconElement = document.querySelector('.user-icon img');
+			if (userIconElement) {
+				userIconElement.src = center.profilePicture;
+			}
+</script>
+
+		<div class="left-side-bar" style="background-color: black !important;">
+			<div class="brand-logo">
+				<a href="dashboard.html">
+					<img src="vendors/images/deskapp-logo.svg" alt="" class="dark-logo" />
+					<img
+						src="vendors/images/deskapp-logo-white.svg"
+						alt=""
+						class="light-logo"
+					/>
+				</a>
+				<div class="close-sidebar" data-toggle="left-sidebar-close">
+					<i class="ion-close-round"></i>
+				</div>
+			</div>
+
+
+			<div class="menu-block customscroll">
+				<div class="sidebar-menu">
+					<ul id="accordion-menu">
+						<li>
+							<a href="dashboard.html" class="dropdown-toggle no-arrow">
+								<span class="micon bi bi-receipt-cutoff"></span
+								><span class="mtext">Dashboard</span>
+							</a>
+						</li>
+						
+						
+					
+						<li>
+							<a href="Add-Offers.html" class="dropdown-toggle no-arrow">
+								<span class="micon bi bi-calendar4-week"></span
+								><span class="mtext">Add Offer</span>
+							</a>
+						</li>
+						<li>
+							<a href="deleteoffer.html" class="dropdown-toggle no-arrow">
+								<span class="micon bi bi-calendar4-week"></span
+								><span class="mtext">Delete Offer</span>
+							</a>
+						</li>
+
+						<li>
+							<a href="form-basic.html" class="dropdown-toggle no-arrow">
+								<span class="micon bi bi-receipt-cutoff"></span
+								><span class="mtext">Update Profile</span>
+							</a>
+						</li>
+				
+						<li>
+							<div class="dropdown-divider"></div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="mobile-menu-overlay"></div>
+
+		<div class="main-container">
+			<div class="xs-pd-20-10 pd-ltr-20">
+				<div class="title pb-20">
+					<h2 class="h3 mb-0 text-white">Offers</h2>
+				</div>
+
+				
+
+			
+<!-- No data available in table -->
+
+				<div id="bookingContainer" class="row">
+					
+				</div>
+				
+
+			
+				
+
+				
+			</div>
+		</div>
+		<!-- welcome modal start -->
+		<!-- welcome modal end -->
+		<!-- js -->
+		<script src="vendors/scripts/core.js"></script>
+		<script src="vendors/scripts/script.min.js"></script>
+		<script src="vendors/scripts/process.js"></script>
+		<script src="vendors/scripts/layout-settings.js"></script>
+		<script src="src/plugins/apexcharts/apexcharts.min.js"></script>
+		<script src="src/plugins/datatables/js/jquery.dataTables.min.js"></script>
+		<script src="src/plugins/datatables/js/dataTables.bootstrap4.min.js"></script>
+		<script src="src/plugins/datatables/js/dataTables.responsive.min.js"></script>
+		<script src="src/plugins/datatables/js/responsive.bootstrap4.min.js"></script>
+		<script src="vendors/scripts/dashboard3.js"></script>
+<script>
+			const token = localStorage.getItem('token')
+			const Id= localStorage.getItem('centerId')
+            console.log(token);
+			console.log(Id);
+
+
+function fetchDataAndPopulateTable() {
+
+	fetch('http://localhost:5000/offer/center', {
+    method: 'POST',
+    headers: {
+        'Authorization': `Bearer ${token}`, 
+		'Content-Type': 'application/json'
+    },
+	body: JSON.stringify({ centerId: Id })
+
+
+})
+.then(response => {
+    if (!response.ok) {
+		Swal.fire({
+                    title: "error",
+                    text: "Network response was not ok",
+                    icon: "question"
+                  });
+        throw new Error('Network response was not ok');
+
+    }
+	
+    return response.json();
+})
+.then(data => {
+	console.log(data)
+    populateTable(data);
+})
+.catch(error => {
+    console.error('Error fetching data:', error);
+	Swal.fire({
+                    title: "error",
+                    text: "Error fetching data",
+                    icon: "question"
+                  });
+
+});
+
+var tableBody = document.getElementById("serviceSendersBody");
+	function populateTable(data) {
+		const container = document.getElementById("bookingContainer");
+    	data.forEach(offer => {
+        const bookingElement = document.createElement("div");
+        bookingElement.className = "col-sm-6 mb-3 mb-sm-0";
+        
+        bookingElement.innerHTML = `
+		<div class="card bg-dark text-white mt-4">
+                <img src="${offer.offer_image}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title text-primary">Title: ${offer.title}</h5>
+                    <p class="card-text">Description: ${offer.description}</p>
+                    <p class="card-text">Discount: ${offer.discount_percentage}%</p>
+                    <p class="card-text">Promo Code: ${offer.promo_code}</p>
+                    <p class="card-text">Date: ${new Date(offer.date_time).toLocaleDateString()}</p>
+                    <a href="#" id="${offer.id}" class="btn btn-danger">Delete</a>
+                </div>
+            </div>
+        `;
+        
+        container.appendChild(bookingElement);
+    });
+
+		
+	container.addEventListener('click', function(event) {
+            const target = event.target;
+            if (target.classList.contains('btn-primary')) {
+                const bookingId = target.getAttribute('id');
+				console.log(bookingId)
+				const alert = confirm("Are you sure you want to delete this row?")
+				if(alert)
+				{
+					deleteServiceSender(bookingId);
+				}
+                
+            } else if (target.classList.contains('btn-primary')) {
+                const serviceSenderId = target.getAttribute('data-id');
+                alert(`Editing service sender with ID ${serviceSenderId}`);
+            }
+        });
+
+		function deleteServiceSender(bookingId) {
+        fetch(`http://localhost:5000/offer/${bookingId}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+				'Authorization': `Bearer ${token}`
+            }
+        })
+        .then(response => {
+			console.log(response.ok)
+            if (response.ok) {
+				Swal.fire({
+        title: "Good job!",
+        text: "Your request was successful.",
+        icon: "success"
+    }).then(() => {
+        location.reload();
+    });
+			}
+               
+        })
+        .catch(error => {
+            console.error('Error deleting service sender:', error);
+			Swal.fire({
+                    title: "error",
+                    text: "Error deleting service sender",
+                    icon: "question"
+                  });
+        });
+    }
+	
+}
+
+}
+
+
+
+fetchDataAndPopulateTable();
+
+
+
+
+
+
+
+
+
+		</script>
+		<!-- Google Tag Manager (noscript) -->
+		<noscript
+			><iframe
+				src="https://www.googletagmanager.com/ns.html?id=GTM-NXZMQSS"
+				height="0"
+				width="0"
+				style="display: none; visibility: hidden"
+			></iframe
+		></noscript>
+		<!-- End Google Tag Manager (noscript) -->
+	</body>
+	
+</html>
