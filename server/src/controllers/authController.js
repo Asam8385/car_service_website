@@ -32,9 +32,9 @@ exports.loginUser = async (req, res) => {
     try {
         let user;
         if (role === 'user') {
-            user = await User.findOne( { raw: true, where:  {email:username} });
+            user = await User.findOne( { raw: true, where:  {email: username } });
         } else if (role === 'service_center') {
-            user = await ServiceSender.findOne({ raw: true, where:  {email:username} });
+            user = await ServiceSender.findOne({ raw: true, where:  {email : username } });
             console.log(user)
         } else {
             return res.status(400).json({ message: 'Invalid role' });
